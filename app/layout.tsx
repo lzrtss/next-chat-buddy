@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+
 import './globals.css';
 
 const geistSans = Geist({
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     'AI chat app with Next.js & Vapi.ai. Chat with Interview Trainer, Coach, Therapist, Philosopher, Friend, or custom roles for interviews & more.',
 };
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -33,3 +34,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;
