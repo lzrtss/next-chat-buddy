@@ -1,31 +1,40 @@
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  Path,
+  useFormContext,
+} from 'react-hook-form';
 
 import { Input } from '@/components/ui/input';
 import {
   FormControl,
-  FormDescription,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { InputType } from '@/constants/forms';
 
 interface FormFieldProps<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
-  error?: string;
   placeholder?: string;
-  type?: 'text' | 'email' | 'password';
+  type?: InputType;
 }
 
-function FormField({
+function FormField<T extends FieldValues>({
   control,
   name,
-  error,
   label,
   placeholder,
   type = 'text',
 }: FormFieldProps<T>) {
+  const {
+    formState: { errors, touchedFields },
+  } = useFormContext();
+  const fieldError = touchedFields[name] && (errors[name]?.message as string);
+
   return (
     <Controller
       control={control}
@@ -43,9 +52,11 @@ function FormField({
               {...field}
             />
           </FormControl>
-          {/* TODO: fix validation (error message to show immediately after leaving dirty input */}
-          {error ? (
-            <FormMessage className="text-red-400 text-sm">{error}</FormMessage>
+
+          {fieldError ? (
+            <FormMessage className="text-red-500 text-sm animate-in fade-in duration-200">
+              {fieldError}
+            </FormMessage>
           ) : null}
           <FormMessage />
         </FormItem>
