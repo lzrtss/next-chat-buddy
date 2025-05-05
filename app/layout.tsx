@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Toaster } from 'sonner';
 
 import './globals.css';
 
@@ -19,17 +20,18 @@ export const metadata: Metadata = {
     'AI chat app with Next.js & Vapi.ai. Chat with Interview Trainer, Coach, Therapist, Philosopher, Friend, or custom roles for interviews & more.',
 };
 
-function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
