@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'ChatAI Buddy',
+  title: 'ChatBuddy',
   description:
     'AI chat app with Next.js & Vapi.ai. Chat with Interview Trainer, Coach, Therapist, Philosopher, Friend, or custom roles for interviews & more.',
 };
